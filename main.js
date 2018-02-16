@@ -1,0 +1,1 @@
+window.Accordion = require('./src/accordion.js');

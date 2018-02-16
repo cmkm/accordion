@@ -1,18 +1,20 @@
 {
-  "name": "aria-accordion",
-  "author": "18F",
+  "name": "@cmkm/aria-accordion",
+  "author": "cmkm",
   "contributors": [
     "Josh Carp <joshua.carp@gsa.gov>",
-    "Noah Manger <noah.manger@gsa.gov"
+    "Noah Manger <noah.manger@gsa.gov>",
+    "Cieara Meador <cmkmeador@gmail.com>"
   ],
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "A simple, accessible, ARIA accordion",
   "repository": {
     "type": "git",
-    "url": "git://github.com/18F/accordion.git"
+    "url": "git://github.com/cmkm/accordion.git"
   },
   "scripts": {
-    "build": "browserify example/init.js > example/main.js",
+    "buildold": "browserify example/init.js > example/main.js",
+    "build": "browserify main.js > bundle.js",
     "test": "mochify test/accordion.js"
   },
   "main": "src/accordion.js",
@@ -23,6 +25,6 @@
     "mochify": "^2.13.0"
   },
   "bugs": {
-    "url": "https://github.com/18f/accordion/issues"
+    "url": "https://github.com/cmkm/accordion/issues"
   }
 }

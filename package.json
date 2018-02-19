@@ -6,7 +6,7 @@
     "Noah Manger <noah.manger@gsa.gov>",
     "Cieara Meador <cmkmeador@gmail.com>"
   ],
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "A simple, accessible, ARIA accordion",
   "repository": {
     "type": "git",

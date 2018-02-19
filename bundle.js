@@ -10,7 +10,8 @@ var defaultOpts = {
     customTargets: false,
     contentPrefix: 'accordion',
     openFirst: false,
-    reflectStatic: false
+    reflectStatic: false,
+    flatSearch: false
 };
 
 var defaultSelectors = {
@@ -59,7 +60,16 @@ Accordion.prototype.findTriggers = function () {
     var self = this;
     var triggers = [].slice.call(this.elm.querySelectorAll(this.selectors.trigger));
     triggers.forEach(function (trigger, index) {
-        self.setAria(trigger, index);
+        // support nested accordions, only use direct children triggers
+        if (self.opts.flatSearch) {
+            if (trigger.parentNode === self.elm) {
+                self.setAria(trigger, index);
+            } else {
+                triggers.pop(index);
+            }
+        } else {
+            self.setAria(trigger, index);
+        }
     });
     return triggers;
 };

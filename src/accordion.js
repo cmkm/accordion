@@ -41,12 +41,16 @@ var Accordion = function (elm, selectors, opts) {
 Accordion.prototype.handleClickElm = function (e) {
     // If the target is the button, toggle the button
     // Else see if the target is a child of a button
-    if (this.triggers.indexOf(e.target) > -1) {
+    if ((this.triggers.indexOf(e.target) > -1)) {
         this.toggle(e.target);
     } else {
         var self = this;
+        var ignored = {
+            'A': true,
+            'BUTTON': true
+        }[e.target.tagName];
         this.triggers.forEach(function (trigger) {
-            if (e.target.parentElement === trigger) {
+            if (trigger.contains(e.target) && !ignored && (!e.target.hasAttribute('aria-controls'))) {
                 self.toggle(trigger);
             }
         });
@@ -148,9 +152,12 @@ Accordion.prototype.setStyles = function (content) {
 };
 
 Accordion.prototype.addEventListener = function (elm, event, callback) {
+    var self = this;
+
     if (elm) {
         elm.addEventListener(event, callback);
-        this.listeners.push({
+
+        self.listeners.push({
             elm: elm,
             event: event,
             callback: callback
